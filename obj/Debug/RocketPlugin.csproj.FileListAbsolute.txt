@@ -1,0 +1,13 @@
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\bin\Debug\RocketPlugin.dll
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\bin\Debug\RocketPlugin.pdb
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\bin\Debug\Microsoft.Identity.Client.dll
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\bin\Debug\Microsoft.Xrm.Sdk.dll
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\bin\Debug\Newtonsoft.Json.dll
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\bin\Debug\Microsoft.Identity.Client.xml
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\bin\Debug\Newtonsoft.Json.xml
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\obj\Debug\RocketPlugin.csproj.CoreCompileInputs.cache
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\obj\Debug\RocketPlugin.csproj.CopyComplete
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\obj\Debug\RocketPlugin.dll
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\obj\Debug\RocketPlugin.pdb

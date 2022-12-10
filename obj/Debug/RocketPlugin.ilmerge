@@ -1,0 +1,5 @@
+RocketPlugin.dll
+Microsoft.Identity.Client.dll
+Microsoft.IdentityModel.Abstractions.dll
+Microsoft.Xrm.Sdk.dll
+Newtonsoft.Json.dll
