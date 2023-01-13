@@ -11,3 +11,4 @@ E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\Rocke
 E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\obj\Debug\RocketPlugin.csproj.CopyComplete
 E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\obj\Debug\RocketPlugin.dll
 E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\obj\Debug\RocketPlugin.pdb
+E:\MyPlus\programming\Enavate\_dev\projects\C#\RetrievePlugin\RocketPlugin\RocketPlugin\obj\Debug\RocketPlugin.csprojAssemblyReference.cache

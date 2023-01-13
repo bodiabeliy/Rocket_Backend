@@ -26,7 +26,6 @@ public class L1Service
         rocket = GetRocket(l1Id);
 
         outputJSON = JsonConvert.SerializeObject(rocket);
-        UpdateRecordJson(l1Id);
         return outputJSON;
     }
 
@@ -41,27 +40,25 @@ public class L1Service
         return rocket;
     }
 
-    private void UpdateRecordJson(Guid l1Id)
-    {
-        var parts = _service.Retrieve("env_part", l1Id, new ColumnSet("env_name", "env_description", "env_imageurl"));
-
-        rocket.Name = (parts.Attributes["env_name"]).ToString();
-        rocket.Description = (parts.Attributes["env_description"]).ToString();
-        rocket.ImageUrl = (parts.Attributes["env_imageurl"]).ToString();
-        GetL2Items(rocket.L2Items, (parts.Attributes["env_name"]).ToString());
-    }
 
     private List<L2> GetL2Items(List<L2> l2ItemsList, string l1ParentName)
     {
-        EntityCollection l2ItemsResponse;
-        do
+        var query = new QueryExpression("env_l2")
         {
-            var query = new QueryExpression("env_l2") { ColumnSet = new ColumnSet("env_name", "cr273_description", "env_l1itemid", "cr273_imageurl", "env_l1items") };
-            query.Criteria.AddCondition(new ConditionExpression("env_l1items", ConditionOperator.Equal, l1ParentName));
-            l2ItemsResponse = _service.RetrieveMultiple(query);
+            ColumnSet = new ColumnSet(
+                "env_name", 
+                "cr273_description", 
+                "env_l1itemid", 
+                "cr273_imageurl", 
+                "env_l1items")
+        };
+        query.Criteria.AddCondition(new ConditionExpression("env_l1items", ConditionOperator.Equal, l1ParentName));
+        var L2ItemCollection = new List<Entity>();
 
-        } while (l2ItemsResponse.MoreRecords);
-        var groupedL2Items = l2ItemsResponse.Entities.GroupBy(l2Item => l2Item.Attributes["env_name"].ToString());
+        L2ItemCollection = RetrieveAllRecords(_service, query);
+
+
+        var groupedL2Items = L2ItemCollection.GroupBy(l2Item => l2Item.Attributes["env_name"].ToString());
         string[] l2ParentGroupNames = groupedL2Items.Select(l2ParentGroupName => Convert.ToString(l2ParentGroupName.Key)).ToArray();
 
         foreach (var group in groupedL2Items)
@@ -88,36 +85,32 @@ public class L1Service
     private List<L3> GetL3Items(List<L3> l3ItemsList, string currentParentGroup, string[] l2ParentGroupNames)
     {
         l3ItemsList.Clear();
-        EntityCollection l3ItemsResponse;
-        do
+        var query = new QueryExpression("env_l3items")
         {
-            var query = new QueryExpression("env_l3items")
-            {
-                ColumnSet = new ColumnSet(
-                "env_name",
-                "env_description",
-                "env_categories",
-                "env_imageurl",
-                "env_svgxml",
-                "env_svgwidth",
-                "env_svgheight",
-                "env_svgviewbox",
-                "env_svgpreserveaspectratio",
-                "env_svgschemaurl",
-                "env_parentcategory",
-                "env_modulecategory"
-                )
-            };
-            query.Criteria.AddCondition(new ConditionExpression("env_parentcategory", ConditionOperator.Equal, currentParentGroup));
-            l3ItemsResponse = _service.RetrieveMultiple(query);
+            ColumnSet = new ColumnSet(
+               "env_name",
+               "env_description",
+               "env_categories",
+               "env_imageurl",
+               "env_svgxml",
+               "env_svgwidth",
+               "env_svgheight",
+               "env_svgviewbox",
+               "env_svgpreserveaspectratio",
+               "env_svgschemaurl",
+               "env_parentcategory",
+               "env_modulecategory"
+               )
+        };
+        query.Criteria.AddCondition(new ConditionExpression("env_parentcategory", ConditionOperator.Equal, currentParentGroup));
+        var L3ItemCollection = new List<Entity>();
+        L3ItemCollection = RetrieveAllRecords(_service, query);
 
-        } while (l3ItemsResponse.MoreRecords);
         foreach (var l2ParentGroupName in l2ParentGroupNames.Select((currentL3GroupName) => new { currentL3GroupName }))
         {
-
             if (currentParentGroup == l2ParentGroupName.currentL3GroupName)
             {
-                var sortedL3Items = l3ItemsResponse.Entities.OrderByDescending(l3Item => l3Item.Attributes["env_name"].ToString()).ToArray();
+                var sortedL3Items = L3ItemCollection.OrderByDescending(l3Item => l3Item.Attributes["env_name"].ToString()).ToArray();
                 foreach (var entityElement in sortedL3Items)
                 {
                     l3ItemsList.Add(new L3
@@ -142,6 +135,33 @@ public class L1Service
         }
         return new List<L3>(l3ItemsList);
 
+    }
+
+    private static List<Entity> RetrieveAllRecords(IOrganizationService service, QueryExpression query)
+    {
+        var pageNumber = 1;
+        var pagingCookie = string.Empty;
+        var result = new List<Entity>();
+        EntityCollection resp;
+        do
+        {
+            if (pageNumber != 1)
+            {
+                query.PageInfo.PageNumber = pageNumber;
+                query.PageInfo.PagingCookie = pagingCookie;
+            }
+            resp = service.RetrieveMultiple(query);
+            if (resp.MoreRecords)
+            {
+                pageNumber++;
+                pagingCookie = resp.PagingCookie;
+            }
+            //Add the result from RetrieveMultiple to the List to be returned.
+            result.AddRange(resp.Entities);
+        }
+        while (resp.MoreRecords);
+
+        return result;
     }
 
     // It is a good practice to retrieve different entities in different providers like:
