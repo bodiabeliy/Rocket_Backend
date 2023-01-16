@@ -61,16 +61,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RetrievePlugin.cs" />
-    <Compile Include="L1Service.cs" />
     <Compile Include="L2.cs" />
     <Compile Include="L3.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rocket.cs" />
+    <Compile Include="src\Services\L1Service.cs" />
+    <Compile Include="src\Services\L2Service.cs" />
+    <Compile Include="src\Services\L3Service.cs" />
+    <Compile Include="src\Services\LevelService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Retrieve Plugin.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\Models\" />
+    <Folder Include="src\Tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

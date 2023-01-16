@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using Microsoft.Xrm.Sdk;
-
+using RocketPlugin.src.Services;
 
 namespace RetrievePlugin
 {
@@ -19,7 +19,7 @@ namespace RetrievePlugin
             service = ((IOrganizationServiceFactory)serviceProvider
                 .GetService(typeof(IOrganizationServiceFactory)))
                 .CreateOrganizationService(context.UserId);
-            var _service = new L1Service(service);
+            var _service = new LevelService(service);
 
             string recievedJson = _service.GetData(context.PrimaryEntityId);
             var l1 = context.OutputParameters["BusinessEntity"] as Entity;
