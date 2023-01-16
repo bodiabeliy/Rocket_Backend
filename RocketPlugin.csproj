@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RetrievePlugin.cs" />
+    <Compile Include="src\Helpers\RetvieveAll.cs" />
     <Compile Include="src\Models\L2.cs" />
     <Compile Include="src\Models\L3.cs" />
     <Compile Include="src\Models\Level.cs" />
@@ -69,7 +70,7 @@
     <Compile Include="src\Services\L1Service.cs" />
     <Compile Include="src\Services\L2Service.cs" />
     <Compile Include="src\Services\L3Service.cs" />
-    <Compile Include="src\Services\LevelService.cs" />
+    <Compile Include="src\Services\BaseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

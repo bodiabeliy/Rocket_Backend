@@ -17,9 +17,10 @@ namespace RocketPlugin.src.Services_L1
         {
             var parts = initialService.Retrieve("env_part", l1Id, new ColumnSet("env_name", "env_description", "env_imageurl"));
 
-            rocket.Name = (parts.Attributes["env_name"]).ToString();
-            rocket.Description = (parts.Attributes["env_description"]).ToString();
-            rocket.ImageUrl = (parts.Attributes["env_imageurl"]).ToString();
+            rocket.Name = parts.GetAttributeValue<string>("env_name");
+            rocket.Description = parts.GetAttributeValue<string>("env_description");
+            rocket.ImageUrl = parts.GetAttributeValue<string>("env_imageurl");
+            
             l2Items.GetL2Items(rocket.L2Items, l1Id.ToString(), initialService);
             return rocket;
         }

@@ -19,7 +19,7 @@ namespace RetrievePlugin
             service = ((IOrganizationServiceFactory)serviceProvider
                 .GetService(typeof(IOrganizationServiceFactory)))
                 .CreateOrganizationService(context.UserId);
-            var _service = new LevelService(service);
+            var _service = new BaseService(service);
 
             string recievedJson = _service.GetData(context.PrimaryEntityId);
             var l1 = context.OutputParameters["BusinessEntity"] as Entity;

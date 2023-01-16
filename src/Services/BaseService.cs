@@ -13,20 +13,16 @@ using RocketPlugin.src.Services_L2;
 
 namespace RocketPlugin.src.Services
 {
-    public class LevelService
+    public class BaseService
     {
         L1Service l1Items = new L1Service();
         Rocket rocket = new Rocket();
         private string outputJSON = "";
-
-
-        public readonly IOrganizationService _service;
-        public LevelService(IOrganizationService service)
+        private readonly IOrganizationService _service;
+        public BaseService(IOrganizationService service)
         {
             _service = service;
         }
-
-
 
         public string GetData(Guid l1Id)
         {
